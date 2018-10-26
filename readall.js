@@ -5,9 +5,9 @@ let thPayload;
 
 function sort(value) {
     if(thPayload.sortOrder ==="asc"){
-        compareValue(value, 1);
-    }else{
         compareValue(value, -1);
+    }else{
+        compareValue(value, 1);
     }
 }
 
@@ -21,9 +21,9 @@ function compareValue(value, order){
     else {
         newArticles.sort(function(a,b) {
             if ( a[value] < b[value] )
-                return -1*order;;
+                return 1*order;
             if ( a[value] > b[value] )
-                return 1*order;;
+                return -1*order;
             return 0;
         } );
     }

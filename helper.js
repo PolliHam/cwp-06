@@ -1,4 +1,5 @@
 let articles = require('./articles');
+let log = require('./log');
 const fs = require('fs');
 const helper = {};
 helper.random_id = function(){
@@ -10,12 +11,14 @@ helper.updateArticles=function(){
 };
 
 helper.logger =(url, post_body)=>{
-    let message = `${helper.dateFormater()}\tUrl: ${url}\r\n\t`+
-        "Post Body: "+JSON.stringify(post_body).toString()+'\r\n'+
-        '***************************************************************\r\n\r\n';
-    fs.appendFile('log.txt', message,()=>{});
+    let info = {
+        date: helper.dateFormater(),
+        url: url,
+        data: post_body
+    };
+    log.push(info);
+    fs.writeFile('log.json', JSON.stringify(log),()=>{});
 };
-
 helper.dateFormater = function(){
     const date = new Date();
     return `Date: ${date.getFullYear()}.${date.getMonth()}.${date.getDay()}  ` +
