@@ -35,11 +35,13 @@ const server = http.createServer((req, res) => {
                 res.setHeader('Content-Type', 'application/json');
                 res.end( JSON.stringify(err) );
             }
-            //helper.updateArticles();
-            helper.logger(req.url,payload);
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.end( JSON.stringify(result) );
+            else {
+                //helper.updateArticles();
+                helper.logger(req.url, payload);
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(result));
+            }
         });
     });
 });
